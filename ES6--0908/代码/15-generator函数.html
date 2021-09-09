@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>执行</button>
+  <script>
+    // generator函数
+    // 1-函数内部可以使用yield关键字, 遇到yield代码停止，当再次执行next方法时，才会继续执行
+    function* foo() {
+      console.log(1);
+      yield 'A';
+      console.log(2);
+      yield 'B';
+      console.log(3);
+      yield 'C';
+    }
+    // 2-调用generator函数，返回迭代器
+    const f = foo();
+
+    let button = document.querySelector('button');
+    button.onclick = function () {
+      // 3-调用next方法，执行generator的函数，遇到yield或return,会停止 
+      const data = f.next();
+      console.log(data);
+    };
+  </script>
+</body>
+
+</html>

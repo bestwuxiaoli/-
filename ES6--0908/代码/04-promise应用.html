@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      width: 160px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+
+  </div>
+  <script>
+    let box = document.querySelector('.box');
+    let imageA = 'http://139.9.209.237/promise/a.jpg';
+    let imageB = 'http://139.9.209.237/promise/b.jpg';
+    let imageC = 'http://139.9.209.237/promise/c.jpg';
+    let imageD = 'http://139.9.209.237/promise/d.jpg';
+
+    // 向服务器请求图片资源，请求成功回调fn
+    // function requestImage(imageUrl, fn) {
+    //   let img = document.createElement('img');
+    //   img.onload = function () {
+    //     fn(this);
+    //   };
+    //   img.src = imageUrl;
+    // }
+
+
+    // 请求并加图片A(回调)
+    // requestImage(imageA, (target) => {
+    //   box.appendChild(target);
+    //   // 请求并加图片B
+    //   requestImage(imageB, (target) => {
+    //     box.appendChild(target);
+    //     // 请求并加图片C
+    //     requestImage(imageC, (target) => {
+    //       box.appendChild(target);
+    //     });
+    //   });
+    // });
+
+    // 请求并加图片(promise)
+    function requestImage(imageUrl) {
+      return new Promise((resolve, reject) => {
+        let img = document.createElement('img');
+        img.onload = function (e) {
+          resolve(e.target);
+        };
+        img.onerror = function (ex) {
+          console.log(ex);
+          reject('图片加载失败');
+        }
+        img.src = imageUrl;
+      });
+    }
+
+    requestImage(imageA).then(res => {
+      box.appendChild(res);
+      return requestImage(imageB);
+    }).then(res => {
+      box.appendChild(res);
+      return requestImage(imageC);
+    }).then(res => {
+      box.appendChild(res);
+      return requestImage(imageD);
+    }).then(res => {
+      box.appendChild(res);
+    }).catch(ex => {
+      console.log(ex);
+    });
+
+
+
+
+    // requestImage(imageD).then(res => {
+    //   // 成功
+    //   console.log('success');
+    //   box.appendChild(res);
+    // }).catch(ex => {
+    //   console.log('失败', ex);
+    // }).finally(() => {
+    //   console.log('反正我执行完成');
+    // });
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

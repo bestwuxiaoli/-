@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 第1步：创建promise对象
+    // 注-1: 参数为回调函数， 函数体内执行异步代码
+    // 注-2: 回调函数本身，可以带两个参数,参数函数类型
+    //       第1个参数是当异步操作成功时要执行的方法,通常参数取名resolve
+    //       第2个参数是当异步操作失败时要执行的方法,通常参数取名reject，调用reject, 会抛出异常
+
+    function showText(ms) {
+      let promise = new Promise((resolve, reject) => {
+        // 异步操作失败, 
+        if (ms < 0) {
+          reject('提供的参数必须大于等于0');
+          return;
+        }
+
+        // 异步操作成功
+        setTimeout(() => {
+          resolve({ code: 0, msg: 'ok' });
+        }, ms);
+      });
+      return promise;
+    }
+
+    // 第2步:通过promise实例的then方法调用resolve方法
+    //      通过promise实例的catch方法捕获异步(调用reject)
+    let promise = showText(-1);
+    // promise.then(res => {
+    //   console.log('被resolve调用了', res);
+    // }).catch(ex => {
+    //   console.log('程序出错:' + ex);
+    // });
+    promise.then(res => {
+      console.log('执行成功:', res);
+    }, ex => {
+      console.log('执行失败:', ex);
+    });
+
+  </script>
+</body>
+
+</html>

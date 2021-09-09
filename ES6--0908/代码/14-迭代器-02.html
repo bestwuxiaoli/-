@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let person = {
+      name: 'Rose',
+      age: 18,
+      [Symbol.iterator]() {
+        let self = this;
+        let keys = Object.keys(self);
+        let index = 0;
+
+        return {
+          next() {
+            let key = keys[index++];
+            if (key) {
+              return {
+                done: false,
+                value: [key, self[key]]
+              };
+            }
+            return {
+              done: true
+            };
+
+          }
+        };
+      }
+    };
+
+    for (let [key, value] of person) {
+      console.log(key, value);
+    }
+  </script>
+</body>
+
+</html>

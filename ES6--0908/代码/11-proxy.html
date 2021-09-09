@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    let person = (function () {
+      // 原始对象
+      let _person = {
+        name: 'Rose',
+        age: 18
+      };
+      // 经纪人
+      const personProxy = new Proxy(_person, {
+        get(target, key) {
+          if (!(key in target)) {
+            throw '小样，你打抽.';
+          }
+          return target[key]; 
+        }
+      });
+
+      return personProxy;
+    })();
+
+    console.log(_person.age);
+
+  </script>
+</body>
+
+</html>

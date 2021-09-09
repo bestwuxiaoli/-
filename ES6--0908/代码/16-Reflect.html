@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // apply
+
+    // let plus = function (a, b) {
+    //   return a + b;
+    // }
+
+    // let res = plus.apply(null, [1, 2]);
+    // console.log(res);
+    // let res = Reflect.apply(plus, null, [1, 2]);
+    // console.log(res);
+
+    // construct
+    // function Person(name, age) {
+    //   this.name = name;
+    //   this.age = age;
+    // }
+
+    // let person = new Person('Rose', 18);
+    // let person = Reflect.construct(Person, ['Jack', 20]);
+    // console.log(person);
+
+    // 
+    // let person = {
+    //   name: 'Rose',
+    //   age: 18
+    // };
+
+
+    // console.log(person.name);
+    // console.log(person['age']);
+    // Reflect.set(person, 'age', 20);
+    // console.log(Reflect.get(person, 'age'));
+
+    // has
+    // function Employee() {
+
+    // }
+    // Employee.prototype.name = 'Rose';
+    // Employee.prototype.sayHi = function () {
+    //   console.log('hi');
+    // };
+
+    // function Manager(age) {
+    //   this.age = age;
+    // }
+
+    // Manager.prototype = Object.create(Employee.prototype);
+    // Manager.prototype.constructor = Manager;
+
+    // let manager = new Manager(18);
+
+    // console.log('age' in manager);
+    // console.log('name' in manager);
+    // console.log('sayHi' in manager);
+
+    // console.log(Reflect.has(manager, 'age'));
+    // console.log(Reflect.has(manager, 'name'));
+    // console.log(Reflect.has(manager, 'sayHi'));
+
+    // //
+    // for (let key in manager) {
+    //   // 检查key是否为当前对象的成员 
+    //   if (manager.hasOwnProperty(key)) {
+    //     console.log(key);
+    //   }
+
+    // }
+
+    // console.log(Reflect.ownKeys(manager));
+
+    // let person = {};
+
+    // Reflect.defineProperty(person, 'age', {
+    //   value: 18
+    // });
+
+    // const descriptor = Reflect.getOwnPropertyDescriptor(person, 'age')
+    // console.log(descriptor);
+
+    let arr = [];
+    console.log(arr.__proto__ === Array.prototype);
+    console.log(Reflect.getPrototypeOf(arr) === Array.prototype);
+
+
+
+
+  </script>
+</body>
+
+</html>

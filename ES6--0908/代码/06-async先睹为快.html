@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // async 为promise语法糖
+
+    async function showText(msg) {
+      if (!msg) {
+        // 手工向调用方抛出异步 reject
+        throw 'msg不能为空';
+      }
+      // 创建成功的promise resolve
+      return 'Hi,' + msg;
+    }
+
+
+
+    async function callShowText() {
+      try {
+        // 正常成功代码
+        let p = await showText('');
+        console.log(p);
+      }
+      catch (ex) {
+        // 失败代码
+        console.log(ex);
+      }
+
+    }
+
+    callShowText();
+
+
+
+
+
+  </script>
+</body>
+
+</html>
